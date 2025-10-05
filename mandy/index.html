@@ -1,8 +1,151 @@
 <!doctype html>
-<meta charset="utf-8">
-<title>Mandy – Curriculum Development Artifacts Page</title>
-<h1>Mandy’s Curriculum Development Artifacts</h1>
-<ul>
-  <li><a href="/artifacts/lesson-plan-01.pdf" target="_blank" rel="noopener">Lesson Plan 01 (PDF)</a></li>
-  <li><a href="/artifacts/slides-intro.html">Intro Slides (HTML)</a></li>
-</ul>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mandy Miller — Curriculum Artifacts</title>
+  <meta name="description" content="Curated curriculum development artifacts by Mandy Miller." />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    /* ---- Design tokens (kept in sync with homepage) ---- */
+    :root {
+      --bg: #0b1020;
+      --bg-grad1: #0b1020;
+      --bg-grad2: #1a2240;
+      --card: #0f162e;
+      --text: #e6eaf2;
+      --muted: #a7b0c3;
+      --accent: #7cc2ff;
+      --accent-2: #9ae6b4;
+      --border: #233059;
+      --shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f9fc;
+        --bg-grad1: #eef3fb;
+        --bg-grad2: #f7f9fc;
+        --card: #ffffff;
+        --text: #1c2430;
+        --muted: #5a6b85;
+        --accent: #0d6efd;
+        --accent-2: #198754;
+        --border: #e6eaf2;
+        --shadow: 0 8px 20px rgba(14, 30, 64, .08);
+      }
+    }
+
+    /* ---- Base ---- */
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg-grad1), var(--bg-grad2));
+    }
+    .container { max-width: 1000px; margin: 0 auto; padding: clamp(16px, 3vw, 32px); }
+
+    /* ---- Header / breadcrumb ---- */
+    header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0 18px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 20%, transparent); }
+    .brand .title { font-weight: 700; letter-spacing: .2px; }
+    nav.breadcrumb { font-size: .95rem; }
+    nav.breadcrumb a { color: var(--muted); text-decoration: none; }
+    nav.breadcrumb a:hover { text-decoration: underline; }
+    nav.breadcrumb .sep { opacity: .6; margin: 0 .5ch; }
+
+    /* ---- Hero ---- */
+    .hero {
+      margin: 6px 0 22px;
+      padding: clamp(16px, 2.6vw, 24px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .hero h1 { margin: 0 0 .4rem; font-size: clamp(1.3rem, 2.4vw, 1.9rem); line-height: 1.15; }
+    .hero p { margin: .25rem 0 0; color: var(--muted); }
+
+    /* ---- Artifact list ---- */
+    .section { margin-top: 18px; }
+    .section h2 { font-size: 1.05rem; margin: 0 0 .6rem; }
+    .list {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .item {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+    }
+    .item:hover { transform: translateY(-1px); border-color: color-mix(in oklab, var(--border) 70%, var(--accent)); box-shadow: 0 12px 26px rgba(0,0,0,.18); }
+    .item .meta { color: var(--muted); font-size: .92rem; margin-top: 2px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 12px; border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text); text-decoration: none; font-weight: 600;
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 90%, #fff 10%), var(--card));
+    }
+    .btn:hover { border-color: color-mix(in oklab, var(--border) 70%, var(--accent)); }
+    .muted { color: var(--muted); }
+    .pill {
+      display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid var(--border);
+      background: color-mix(in oklab, var(--card) 70%, var(--accent-2)); font-size:.78rem;
+      margin-left: 8px;
+    }
+
+    /* ---- Footer ---- */
+    footer { margin: 26px 0 8px; color: var(--muted); font-size: .9rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    footer a { color: inherit; }
+    code { background: color-mix(in oklab, var(--card) 80%, #000 20%); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <div class="title">Mandy Miller</div>
+          <div class="muted">Curriculum Artifacts</div>
+        </div>
+      </div>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span class="sep">/</span> <span>Artifacts</span>
+      </nav>
+    </header>
+
+    <section class="hero" aria-label="Intro">
+      <h1>Selected Curriculum Artifacts</h1>
+      <p>Lesson plans, unit overviews, slide decks, and supporting materials. Files open in a new tab.</p>
+    </section>
+
+    <!-- ✏️ Edit below: add/remove items as you like. Use URL-encoding for spaces (%20). -->
+    <section class="section" aria-label="Artifacts">
+      <h2>Artifacts</h2>
+      <div class="list">
+
+        <!-- Example 1 — PDF lesson plan -->
+        <div class="item">
+          <div>
+            <div><strong>Lesson Plan 01 — Ecosystems Introduction</strong><span class="pill">PDF</span></div>
+            <div class="meta">Objectives, activities, formative checks, and differentiation notes.</div>
+          </div>
+          <a class="btn" href="/artifacts/2025-10-lesson-plan-01.pdf" target="_blank" rel="noopener" aria-label="Open Lesson Plan 01 PDF">Open</a>
+        </div>
+
+        <!-- Example 2 — Unit overview (PDF) -->
+        <div class="item">
+          <div>
+            <div><strong>Unit Overview — Cells &amp; Systems</strong><span clas
