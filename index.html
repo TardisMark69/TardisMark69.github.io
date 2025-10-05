@@ -1,11 +1,252 @@
-<!doctype html><meta charset=utf-8><title>It works</title><h1>Hello - this is Mandys Cirriculum Development page</h1>
-<nav>
-  <a href="/mandy/">Mandy’s Artifacts</a>
-</nav>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mandy Miller — Curriculum Portfolio</title>
+  <meta name="description" content="Curriculum development portfolio and résumé for Mandy Miller." />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    /* ---- Design tokens ---- */
+    :root {
+      --bg: #0b1020;
+      --bg-grad1: #0b1020;
+      --bg-grad2: #1a2240;
+      --card: #0f162e;
+      --text: #e6eaf2;
+      --muted: #a7b0c3;
+      --accent: #7cc2ff;
+      --accent-2: #9ae6b4;
+      --border: #233059;
+      --shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f9fc;
+        --bg-grad1: #eef3fb;
+        --bg-grad2: #f7f9fc;
+        --card: #ffffff;
+        --text: #1c2430;
+        --muted: #5a6b85;
+        --accent: #0d6efd;
+        --accent-2: #198754;
+        --border: #e6eaf2;
+        --shadow: 0 8px 20px rgba(14, 30, 64, .08);
+      }
+    }
 
-<nav>
-  <a href="/A.%20Miller%20Resume%202025-2.pdf" target="_blank" rel="noopener">
-    Mandy’s Résumé (PDF)
-  </a>
-</nav>
+    /* ---- Base ---- */
+    html, body {
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: linear-gradient(180deg, var(--bg-grad1), var(--bg-grad2));
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: clamp(16px, 3vw, 32px);
+    }
 
+    /* ---- Header / hero ---- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 8px 0 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand .mark {
+      width: 40px; height: 40px;
+      display: grid; place-items: center;
+      border-radius: 10px;
+      background: radial-gradient(120% 120% at 20% 20%, var(--accent) 0%, transparent 60%),
+                  radial-gradient(120% 120% at 80% 80%, var(--accent-2) 0%, transparent 60%),
+                  var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .brand .title { font-weight: 700; letter-spacing: .2px; }
+    .brand .sub { color: var(--muted); font-size: .95rem; }
+
+    /* ---- Intro ---- */
+    .hero {
+      margin: 8px 0 28px;
+      padding: clamp(18px, 3vw, 28px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .hero h1 {
+      margin: 0 0 .4rem;
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      line-height: 1.15;
+    }
+    .hero p { margin: .25rem 0 0; color: var(--muted); }
+
+    /* ---- Cards grid ---- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .card {
+      grid-column: span 6;
+      display: grid;
+      gap: 12px;
+      padding: clamp(16px, 2.5vw, 20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0,0,0,.2);
+      border-color: color-mix(in oklab, var(--border) 70%, var(--accent));
+    }
+    @media (max-width: 780px) {
+      .card { grid-column: 1 / -1; }
+    }
+    .card header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: .78rem;
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: color-mix(in oklab, var(--card) 70%, var(--accent));
+    }
+    .muted { color: var(--muted); font-size: .95rem; }
+    .actions {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 90%, #fff 10%), var(--card));
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in oklab, var(--border) 70%, var(--accent));
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 80%, #fff 20%), var(--card));
+    }
+    .btn.secondary {
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 90%, #fff 8%), var(--card));
+    }
+    .small { font-size: .9rem; }
+
+    footer {
+      margin: 28px 0 8px;
+      color: var(--muted);
+      font-size: .9rem;
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    footer a { color: inherit; }
+    code { background: color-mix(in oklab, var(--card) 80%, #000 20%); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Top bar -->
+    <header aria-label="Site header">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <!-- simple inline logo -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3l3.5 6 6.5 1-4.7 4.6L18 21l-6-3.2L6 21l1.7-6.4L3 10l6.5-1L12 3z"
+                  stroke="currentColor" stroke-width="1.2" fill="none"/>
+          </svg>
+        </div>
+        <div>
+          <div class="title">Mandy Miller</div>
+          <div class="sub">Curriculum Development Portfolio</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro -->
+    <section class="hero" aria-label="Introduction">
+      <h1>Selected Work &amp; Résumé</h1>
+      <p class="small">Browse curated artifacts and view Mandy’s résumé. Files open in a new tab. The résumé PDF is password protected.</p>
+    </section>
+
+    <!-- Two primary cards -->
+    <section class="grid" aria-label="Featured sections">
+      <!-- Artifacts card -->
+      <article class="card" aria-labelledby="artifacts-title">
+        <header>
+          <span class="badge" aria-label="Section">Artifacts</span>
+          <h2 id="artifacts-title" style="margin:0;font-size:1.15rem;">Mandy’s Curriculum Artifacts</h2>
+        </header>
+        <p class="muted">Lesson plans, unit overviews, and sample materials.</p>
+        <div class="actions">
+          <a class="btn" href="/mandy/">
+            <!-- folder icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 6h5l2 2h11v10a2 2 0 0 1-2 2H3V6z" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            Open Artifacts
+          </a>
+          <span class="muted small">Folder: <code>/mandy/</code></span>
+        </div>
+      </article>
+
+      <!-- Resume card -->
+      <article class="card" aria-labelledby="resume-title">
+        <header>
+          <span class="badge" aria-label="Section">Résumé</span>
+          <h2 id="resume-title" style="margin:0;font-size:1.15rem;">Mandy’s Résumé (PDF)</h2>
+        </header>
+        <p class="muted">Opens in a new tab. Password required.</p>
+        <div class="actions">
+          <a class="btn secondary" href="/A.%20Miller%20Resume%202025-2.pdf" target="_blank" rel="noopener">
+            <!-- lock/doc icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="1.2"/>
+              <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            View Résumé (PDF)
+          </a>
+          <span class="muted small">File: <code>A. Miller Resume 2025-2.pdf</code></span>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Mandy Miller</span>
+      <span class="muted">Static site hosted on GitHub Pages.</span>
+    </footer>
+  </div>
+  <script>
+    // tiny nicety for the footer year; safe even if JS is blocked
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
