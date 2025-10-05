@@ -1,4 +1,5 @@
 DISTFILES += \
     .gitignore \
     .nojekyll \
-    index.html
+    index.html \
+    mandy/index.html
