@@ -1,2 +1,4 @@
 DISTFILES += \
-    .gitignore
+    .gitignore \
+    .nojekyll \
+    index.html
