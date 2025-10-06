@@ -1,252 +1,148 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mandy Miller — Curriculum Portfolio</title>
-  <meta name="description" content="Curriculum development portfolio and résumé for Mandy Miller." />
-  <meta name="color-scheme" content="light dark" />
-  <style>
-    /* ---- Design tokens ---- */
-    :root {
-      --bg: #0b1020;
-      --bg-grad1: #0b1020;
-      --bg-grad2: #1a2240;
-      --card: #0f162e;
-      --text: #e6eaf2;
-      --muted: #a7b0c3;
-      --accent: #7cc2ff;
-      --accent-2: #9ae6b4;
-      --border: #233059;
-      --shadow: 0 10px 25px rgba(0,0,0,.25);
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #f7f9fc;
-        --bg-grad1: #eef3fb;
-        --bg-grad2: #f7f9fc;
-        --card: #ffffff;
-        --text: #1c2430;
-        --muted: #5a6b85;
-        --accent: #0d6efd;
-        --accent-2: #198754;
-        --border: #e6eaf2;
-        --shadow: 0 8px 20px rgba(14, 30, 64, .08);
-      }
-    }
-
-    /* ---- Base ---- */
-    html, body {
-      height: 100%;
-    }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text);
-      background: linear-gradient(180deg, var(--bg-grad1), var(--bg-grad2));
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: clamp(16px, 3vw, 32px);
-    }
-
-    /* ---- Header / hero ---- */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 8px 0 24px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .brand .mark {
-      width: 40px; height: 40px;
-      display: grid; place-items: center;
-      border-radius: 10px;
-      background: radial-gradient(120% 120% at 20% 20%, var(--accent) 0%, transparent 60%),
-                  radial-gradient(120% 120% at 80% 80%, var(--accent-2) 0%, transparent 60%),
-                  var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-    .brand .title { font-weight: 700; letter-spacing: .2px; }
-    .brand .sub { color: var(--muted); font-size: .95rem; }
-
-    /* ---- Intro ---- */
-    .hero {
-      margin: 8px 0 28px;
-      padding: clamp(18px, 3vw, 28px);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: var(--card);
-      box-shadow: var(--shadow);
-    }
-    .hero h1 {
-      margin: 0 0 .4rem;
-      font-size: clamp(1.4rem, 2.6vw, 2rem);
-      line-height: 1.15;
-    }
-    .hero p { margin: .25rem 0 0; color: var(--muted); }
-
-    /* ---- Cards grid ---- */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-    }
-    .card {
-      grid-column: span 6;
-      display: grid;
-      gap: 12px;
-      padding: clamp(16px, 2.5vw, 20px);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: var(--card);
-      box-shadow: var(--shadow);
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0,0,0,.2);
-      border-color: color-mix(in oklab, var(--border) 70%, var(--accent));
-    }
-    @media (max-width: 780px) {
-      .card { grid-column: 1 / -1; }
-    }
-    .card header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0;
-    }
-    .badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: .78rem;
-      color: var(--text);
-      border: 1px solid var(--border);
-      background: color-mix(in oklab, var(--card) 70%, var(--accent));
-    }
-    .muted { color: var(--muted); font-size: .95rem; }
-    .actions {
-      margin-top: 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 90%, #fff 10%), var(--card));
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform .15s ease, border-color .15s ease, background .15s ease;
-    }
-    .btn:hover {
-      transform: translateY(-1px);
-      border-color: color-mix(in oklab, var(--border) 70%, var(--accent));
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 80%, #fff 20%), var(--card));
-    }
-    .btn.secondary {
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 90%, #fff 8%), var(--card));
-    }
-    .small { font-size: .9rem; }
-
-    footer {
-      margin: 28px 0 8px;
-      color: var(--muted);
-      font-size: .9rem;
-      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    }
-    footer a { color: inherit; }
-    code { background: color-mix(in oklab, var(--card) 80%, #000 20%); padding: 2px 6px; border-radius: 6px; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mandy Miller — Portfolio & Roadmap</title>
+<meta name="description" content="Portfolio, résumé, and delivery roadmap for Mandy Miller." />
+<meta name="color-scheme" content="light dark" />
+<style>
+  :root{
+    --bg:#0b1020;--bg1:#0b1020;--bg2:#1a2240;--card:#0f162e;--text:#e6eaf2;
+    --muted:#a7b0c3;--accent:#7cc2ff;--accent2:#9ae6b4;--border:#233059;--shadow:0 10px 25px rgba(0,0,0,.25);
+    --ok:#27ae60;--warn:#f39c12;--bad:#e74c3c
+  }
+  @media (prefers-color-scheme:light){
+    :root{--bg:#f7f9fc;--bg1:#eef3fb;--bg2:#f7f9fc;--card:#fff;--text:#1c2430;--muted:#5a6b85;--accent:#0d6efd;--accent2:#198754;--border:#e6eaf2;--shadow:0 8px 20px rgba(14,30,64,.08)}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial;color:var(--text);background:linear-gradient(180deg,var(--bg1),var(--bg2))}
+  .container{max-width:1000px;margin:0 auto;padding:clamp(16px,3vw,32px)}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 18px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .mark{width:40px;height:40px;display:grid;place-items:center;border-radius:10px;background:
+    radial-gradient(120% 120% at 20% 20%,var(--accent) 0%,transparent 60%),
+    radial-gradient(120% 120% at 80% 80%,var(--accent2) 0%,transparent 60%),var(--card);
+    border:1px solid var(--border);box-shadow:var(--shadow)}
+  .title{font-weight:700}
+  .sub{color:var(--muted)}
+  .hero{margin:6px 0 22px;padding:clamp(16px,2.6vw,24px);border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+  .card{grid-column:span 6;display:grid;gap:10px;padding:16px;border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
+  @media(max-width:780px){.card{grid-column:1/-1}}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.04),transparent);color:inherit;text-decoration:none;font-weight:600}
+  .muted{color:var(--muted)}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--border);background:color-mix(in oklab,var(--card) 70%, var(--accent2));font-size:.78rem}
+  /* Roadmap table */
+  .road{margin-top:18px}
+  .row{display:grid;grid-template-columns:140px 1fr 90px;gap:10px;align-items:center;border:1px solid var(--border);border-radius:12px;background:var(--card);padding:10px 12px;margin-bottom:10px}
+  .bar{height:10px;border-radius:8px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
+  .bar>span{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .row small{color:var(--muted)}
+  footer{margin:26px 0 8px;color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  code{background:color-mix(in oklab,var(--card) 80%, #000 20%);padding:2px 6px;border-radius:6px}
+</style>
 </head>
 <body>
-  <div class="container">
-    <!-- Top bar -->
-    <header aria-label="Site header">
-      <div class="brand">
-        <div class="mark" aria-hidden="true">
-          <!-- simple inline logo -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 3l3.5 6 6.5 1-4.7 4.6L18 21l-6-3.2L6 21l1.7-6.4L3 10l6.5-1L12 3z"
-                  stroke="currentColor" stroke-width="1.2" fill="none"/>
-          </svg>
-        </div>
-        <div>
-          <div class="title">Mandy Miller</div>
-          <div class="sub">Curriculum Development Portfolio</div>
-        </div>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3l3.5 6 6.5 1-4.7 4.6L18 21l-6-3.2L6 21l1.7-6.4L3 10l6.5-1L12 3z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        </svg>
       </div>
-    </header>
+      <div>
+        <div class="title">Mandy Miller</div>
+        <div class="sub">Portfolio & Remote-Readiness Roadmap</div>
+      </div>
+    </div>
+  </header>
 
-    <!-- Intro -->
-    <section class="hero" aria-label="Introduction">
-      <h1>Selected Work &amp; Résumé</h1>
-      <p class="small">Browse curated artifacts and view Mandy’s résumé. Files open in a new tab. The résumé PDF is password protected.</p>
-    </section>
+  <section class="hero">
+    <h1 style="margin:.2rem 0 0">Selected Work & Résumé</h1>
+    <p class="muted">Browse artifact samples and résumé. Below: a live progress view of the phases through post-move ramp.</p>
+  </section>
 
-    <!-- Two primary cards -->
-    <section class="grid" aria-label="Featured sections">
-      <!-- Artifacts card -->
-      <article class="card" aria-labelledby="artifacts-title">
-        <header>
-          <span class="badge" aria-label="Section">Artifacts</span>
-          <h2 id="artifacts-title" style="margin:0;font-size:1.15rem;">Mandy’s Curriculum Artifacts</h2>
-        </header>
-        <p class="muted">Lesson plans, unit overviews, and sample materials.</p>
-        <div class="actions">
-          <a class="btn" href="/mandy/">
-            <!-- folder icon -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M3 6h5l2 2h11v10a2 2 0 0 1-2 2H3V6z" stroke="currentColor" stroke-width="1.2"/>
-            </svg>
-            Open Artifacts
-          </a>
-          <span class="muted small">Folder: <code>/mandy/</code></span>
-        </div>
-      </article>
+  <section class="grid" aria-label="Featured">
+    <article class="card">
+      <header style="display:flex;align-items:center;gap:10px"><span class="pill">Artifacts</span><h2 style="margin:0;font-size:1.1rem">Mandy’s Curriculum Artifacts</h2></header>
+      <p class="muted">Lesson plans, SCORM/H5P, assessment packs.</p>
+      <a class="btn" href="/mandy/">Open Artifacts</a>
+    </article>
+    <article class="card">
+      <header style="display:flex;align-items:center;gap:10px"><span class="pill">Résumé</span><h2 style="margin:0;font-size:1.1rem">Mandy’s Résumé (PDF)</h2></header>
+      <p class="muted">Opens in a new tab.</p>
+      <a class="btn" href="/A.%20Miller%20Resume%202025-2.pdf" target="_blank" rel="noopener">View Résumé</a>
+    </article>
+  </section>
 
-      <!-- Resume card -->
-      <article class="card" aria-labelledby="resume-title">
-        <header>
-          <span class="badge" aria-label="Section">Résumé</span>
-          <h2 id="resume-title" style="margin:0;font-size:1.15rem;">Mandy’s Résumé (PDF)</h2>
-        </header>
-        <p class="muted">Opens in a new tab. Password required.</p>
-        <div class="actions">
-          <a class="btn secondary" href="/A.%20Miller%20Resume%202025-2.pdf" target="_blank" rel="noopener">
-            <!-- lock/doc icon -->
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="1.2"/>
-              <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/>
-            </svg>
-            View Résumé (PDF)
-          </a>
-          <span class="muted small">File: <code>A. Miller Resume 2025-2.pdf</code></span>
-        </div>
-      </article>
-    </section>
+  <h2 style="margin:22px 0 8px">Roadmap (P0 → P6)</h2>
+  <div class="road" id="road"></div>
 
-    <footer>
-      <span>© <span id="year"></span> Mandy Miller</span>
-      <span class="muted">Static site hosted on GitHub Pages.</span>
-    </footer>
-  </div>
-  <script>
-    // tiny nicety for the footer year; safe even if JS is blocked
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <footer>
+    <span>© <span id="year"></span> Mandy Miller</span>
+    <span class="muted">Local progress is stored in <code>localStorage</code>. Edit details in <a href="/mandy/">Tracker</a>.</span>
+  </footer>
+</div>
+
+<script>
+/* ---- Task data (single source of truth) ---- */
+const TASKS = [
+  {id:"P0-1", phase:"P0 - Guardrails", start:"2025-10-02", end:"2025-10-08", weeks:1, title:"Choose niche & time budget; lock weekly cadence", deliverables:"Niche statement; Tue/Thu 1.5h + Weekend 3h blocks; tracker adopted", estW:0, estTot:2, deps:"", owner:"Mandy", prio:"M", status:"Not Started", notes:"Keep total <= 2 hours this week"},
+  {id:"P1-1", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install Adapt Authoring & verify SCORM export", deliverables:"Adapt running; sample SCORM 1.2 ZIP", estW:2, estTot:6, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:"Linux/FOSS only"},
+  {id:"P1-2", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install H5P authoring (LUMI or Moodle H5P)", deliverables:"H5P authoring ready; trivial interactive", estW:1.5, estTot:5, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P1-3", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install OBS + Kdenlive and test recording", deliverables:"15–30s sample capture", estW:1, estTot:3, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P1-4", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Publish minimal portfolio site", deliverables:"Live URL w/ 3 empty slots", estW:1.5, estTot:5, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P2-1", phase:"P2 - Artifact 1 (H5P)", start:"2025-11-01", end:"2025-11-14", weeks:2, title:"Design & build H5P microlearning", deliverables:"10–15 min H5P; WCAG notes; link on portfolio", estW:6, estTot:12, deps:"P1", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
+  {id:"P2-2", phase:"P2 - Artifact 2 (Adapt SCORM)", start:"2025-11-15", end:"2025-12-12", weeks:4.1, title:"Build Adapt course; export SCORM 1.2 & 2004; LMS test", deliverables:"SCORM 1.2 & 2004 ZIPs; LMS test passed", estW:6, estTot:24, deps:"P1", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
+  {id:"P2-3", phase:"P2 - Artifact 2 (Adapt SCORM)", start:"2025-11-29", end:"2025-12-12", weeks:2, title:"Record 30s GIF showing LMS tracking", deliverables:"GIF linked on portfolio", estW:1, estTot:2, deps:"P2 A2 build; OBS/Kdenlive", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P2-4", phase:"P2 - Artifact 3 (Assessment Pack)", start:"2025-12-13", end:"2025-12-19", weeks:1, title:"Create standards-aligned item bank + rubric + remediation guide", deliverables:"PDF pack + 2-min screencast", estW:6, estTot:8, deps:"P1; target grade", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
+  {id:"P3-1", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Write portfolio narratives (problem→design→outcomes)", deliverables:"Narratives posted", estW:2, estTot:6, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P3-2", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Update resume (1 page) + micro SOW template", deliverables:"Resume PDF; SOW.md", estW:2, estTot:6, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P3-3", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Set LinkedIn/Indeed saved searches; shortlist 20 leads", deliverables:"Saved searches; lead sheet", estW:2, estTot:4, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P4-1", phase:"P4 - First Contracts (US-based)", start:"2026-02-01", end:"2026-04-30", weeks:12.9, title:"Apply to 5–8 roles/week (tailored)", deliverables:"Apps log; pipeline", estW:2, estTot:24, deps:"P3", owner:"Mandy", prio:"H", status:"Not Started", notes:"Sustain 12 weeks"},
+  {id:"P4-2", phase:"P4 - First Contracts (US-based)", start:"2026-02-01", end:"2026-03-01", weeks:4.3, title:"Land first 40–80h project; execute nights/weekends", deliverables:"Signed SOW; first deliverables; testimonial", estW:6, estTot:40, deps:"P4 pipeline", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
+  {id:"P4-3", phase:"P4 - First Contracts (US-based)", start:"2026-03-02", end:"2026-04-30", weeks:8.3, title:"Land second 40–80h project; execute", deliverables:"Signed SOW; deliverables accepted", estW:6, estTot:40, deps:"P4 pipeline", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
+  {id:"P5-1", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-06-15", weeks:6.6, title:"Confirm clients allow work from abroad; shift to 1099 if needed", deliverables:"Email confirmations/addenda", estW:1, estTot:4, deps:"Active clients", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P5-2", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-05-20", weeks:2.9, title:"Set up invoicing & payments (Wise/Payoneer); export templates", deliverables:"Invoice template; payment verified", estW:1, estTot:3, deps:"None", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P5-3", phase:"P5 - Pre-Move Hardening", start:"2026-05-10", end:"2026-06-15", weeks:5, title:"Secure one retainer (10–15 hrs/wk) for June/July", deliverables:"Signed retainer SOW", estW:2, estTot:8, deps:"P4 clients", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
+  {id:"P6-1", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-31", weeks:6.7, title:"Start invoicing from Uruguay; track hours & net ratio (0.723 baseline)", deliverables:"Updated sheet; first invoice from Uruguay", estW:1, estTot:4, deps:"P5 payments ready", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
+  {id:"P6-2", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-15", weeks:4.3, title:"Scale to ~20 hrs/wk at $40–$55/hr; update portfolio with case notes", deliverables:"Hours logs; updated portfolio", estW:6, estTot:40, deps:"P5 retainer", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
+  {id:"P6-3", phase:"P6 - Post-Move Ramp", start:"2026-07-16", end:"2026-07-31", weeks:2.3, title:"Evaluate adding a second client or expanding retainer", deliverables:"Decision note; outreach", estW:2, estTot:6, deps:"Throughput stable", owner:"Mandy", prio:"M", status:"Not Started", notes:""}
+];
+
+/* Merge local progress (saved in mandy tracker) to compute phase progress */
+const SAVED = JSON.parse(localStorage.getItem("mandy_tasks_v1")||"{}");
+const tasks = TASKS.map(t => ({...t, status: (SAVED[t.id]?.status ?? t.status)}));
+
+/* Compute progress by phase */
+const phases = [...new Set(tasks.map(t=>t.phase))].map(p => {
+  const list = tasks.filter(t=>t.phase===p);
+  const done = list.filter(t=>t.status==="Done").length;
+  return { phase:p, count:list.length, done, start: list.map(t=>t.start).sort()[0], end: list.map(t=>t.end).sort().slice(-1)[0] };
+});
+
+/* Render */
+const road = document.getElementById('road');
+phases.forEach(ph=>{
+  const pct = ph.count ? Math.round(100*ph.done/ph.count) : 0;
+  const row = document.createElement('div'); row.className='row';
+  row.innerHTML = `
+    <div>
+      <strong>${ph.phase}</strong><br/>
+      <small>${ph.start} → ${ph.end}</small>
+    </div>
+    <div>
+      <div class="bar" aria-label="Progress ${pct}%"><span style="width:${pct}%"></span></div>
+      <small>${ph.done}/${ph.count} tasks done</small>
+    </div>
+    <div style="text-align:right">
+      <a class="btn" href="/mandy/#${encodeURIComponent(ph.phase)}">Open</a>
+    </div>`;
+  road.appendChild(row);
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
