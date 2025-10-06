@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mandy — Artifacts & Roadmap Tracker</title>
+<title>Mandy Miller — Artifacts Showcase</title>
 <meta name="color-scheme" content="light dark" />
 <style>
   :root{--bg:#0b1020;--bg1:#0b1020;--bg2:#1a2240;--card:#0f162e;--text:#e6eaf2;--muted:#a7b0c3;--accent:#7cc2ff;--accent2:#9ae6b4;--border:#233059;--shadow:0 10px 25px rgba(0,0,0,.25)}
@@ -15,201 +15,303 @@
   .brand{display:flex;align-items:center;gap:10px}
   .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
   .muted{color:var(--muted)}
-  .card{border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow);padding:14px}
-  .controls{display:grid;grid-template-columns: repeat(12,1fr); gap:10px; margin:10px 0 16px}
-  .controls>*{grid-column: span 4}
-  @media(max-width:860px){.controls>*{grid-column:1/-1}}
-  select, input[type="search"], textarea{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:transparent;color:inherit}
-  table{width:100%;border-collapse:separate;border-spacing:0 10px}
-  th{font-size:.9rem;color:var(--muted);text-align:left;padding:0 8px}
-  td{vertical-align:top;padding:10px 8px;background:var(--card);border:1px solid var(--border)}
-  tr{border-radius:12px}
-  .row{box-shadow:var(--shadow);border-radius:12px;overflow:hidden}
-  .row td:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
-  .row td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
-  .tag{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--border);background:color-mix(in oklab,var(--card) 70%, var(--accent2));font-size:.78rem;margin-left:6px}
-  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;border:1px solid var(--border);text-decoration:none;color:inherit;background:linear-gradient(180deg,rgba(255,255,255,.04),transparent);font-weight:600}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 12px;border-radius:10px;border:1px solid var(--border);text-decoration:none;color:inherit;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent);font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .card{grid-column:span 6;border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow);padding:14px;display:grid;gap:10px}
+  @media (max-width:860px){.card{grid-column:1/-1}}
+  .title{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .pill{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--border);background:color-mix(in oklab,var(--card) 70%, var(--accent2));font-size:.78rem}
+  .links a{display:inline-flex;gap:6px;align-items:center;margin-right:8px;margin-top:4px}
+  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .meta{font-size:.92rem}
+  textarea, select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);background:transparent;color:inherit}
+  .checklist{display:grid;gap:6px;margin:4px 0}
+  .checklist label{display:flex;gap:8px;align-items:flex-start}
   .bar{height:8px;border-radius:8px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
   .bar>span{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-  .right{text-align:right}
-  .nowrap{white-space:nowrap}
+  footer{margin:18px 0 6px;color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .warn{color:#f39c12}
 </style>
 </head>
 <body>
 <div class="container">
   <header>
-    <div class="brand"><span class="dot"></span><div><div style="font-weight:700">Mandy Miller</div><div class="muted">Artifacts & Roadmap Tracker</div></div></div>
-    <nav class="muted"><a class="btn" href="/">Home</a></nav>
+    <div class="brand"><span class="dot"></span><div><div style="font-weight:700">Mandy Miller</div><div class="muted">Artifacts Showcase</div></div></div>
+    <nav class="muted">
+      <a class="btn" href="/">Home</a>
+      <a class="btn" href="/A.%20Miller%20Resume%202025-2.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+    </nav>
   </header>
 
-  <div class="card" style="margin-bottom:12px">
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <a class="btn" href="/artifacts/" target="_blank" rel="noopener">Open /artifacts/ folder</a>
-      <a class="btn" href="/A.%20Miller%20Resume%202025-2.pdf" target="_blank" rel="noopener">Open Résumé (PDF)</a>
-      <span class="muted">Progress is saved locally in your browser.</span>
-    </div>
-  </div>
+  <section style="margin:6px 0 16px">
+    <p class="muted">These are the **containers** for the items employers expect to see. Drop the files into <code>/artifacts/</code> with the suggested names; links below will start working after you push.</p>
+  </section>
 
-  <div class="card">
-    <div class="controls">
-      <select id="phase"></select>
-      <select id="status">
-        <option value="">Status: All</option>
-        <option>Not Started</option><option>In Progress</option><option>Blocked</option><option>Done</option>
-      </select>
-      <select id="prio">
-        <option value="">Priority: All</option>
-        <option>H</option><option>M</option><option>L</option>
-      </select>
-      <input id="search" type="search" placeholder="Search task or deliverables…" />
-      <button id="reset" class="btn">Reset Filters</button>
-      <button id="export" class="btn">Export JSON</button>
-    </div>
+  <section class="grid" id="cards"></section>
 
-    <div style="margin:6px 0 12px; display:flex; gap:12px; align-items:center; flex-wrap:wrap">
-      <div class="bar" style="width:260px" title="Overall progress"><span id="overall" style="width:0%"></span></div>
+  <section style="margin-top:14px">
+    <div class="row">
+      <div class="bar" style="width:280px"><span id="overall" style="width:0%"></span></div>
       <span class="muted" id="statTxt"></span>
+      <button class="btn" id="export">Export Status JSON</button>
+      <button class="btn" id="reset">Reset Local Progress</button>
     </div>
+  </section>
 
-    <table aria-label="Task tracker">
-      <thead>
-        <tr>
-          <th>Phase</th>
-          <th>Task</th>
-          <th>Dates</th>
-          <th class="nowrap">Priority</th>
-          <th>Status</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
-
-  <footer style="margin:18px 0 6px" class="muted">
+  <footer>
     <span>© <span id="year"></span> Mandy Miller</span>
-    <span>Data key: <code>mandy_tasks_v1</code> in localStorage</span>
+    <span class="muted">Progress saves to <code>mandy_portfolio_containers_v1</code> (localStorage).</span>
   </footer>
 </div>
 
 <script>
-/* ---- Data (same as homepage) ---- */
-const DATA = [
-  {id:"P0-1", phase:"P0 - Guardrails", start:"2025-10-02", end:"2025-10-08", weeks:1, title:"Choose niche & time budget; lock weekly cadence", deliverables:"Niche statement; Tue/Thu 1.5h + Weekend 3h blocks; tracker adopted", estW:0, estTot:2, deps:"", owner:"Mandy", prio:"M", status:"Not Started", notes:"Keep total <= 2 hours this week"},
-  {id:"P1-1", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install Adapt Authoring & verify SCORM export", deliverables:"Adapt running; sample SCORM 1.2 ZIP", estW:2, estTot:6, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:"Linux/FOSS only"},
-  {id:"P1-2", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install H5P authoring (LUMI or Moodle H5P)", deliverables:"H5P authoring ready; trivial interactive", estW:1.5, estTot:5, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P1-3", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install OBS + Kdenlive and test recording", deliverables:"15–30s sample capture", estW:1, estTot:3, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P1-4", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Publish minimal portfolio site", deliverables:"Live URL w/ 3 empty slots", estW:1.5, estTot:5, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P2-1", phase:"P2 - Artifact 1 (H5P)", start:"2025-11-01", end:"2025-11-14", weeks:2, title:"Design & build H5P microlearning", deliverables:"10–15 min H5P; WCAG notes; link on portfolio", estW:6, estTot:12, deps:"P1", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P2-2", phase:"P2 - Artifact 2 (Adapt SCORM)", start:"2025-11-15", end:"2025-12-12", weeks:4.1, title:"Build Adapt course; export SCORM 1.2 & 2004; LMS test", deliverables:"SCORM 1.2 & 2004 ZIPs; LMS test passed", estW:6, estTot:24, deps:"P1", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P2-3", phase:"P2 - Artifact 2 (Adapt SCORM)", start:"2025-11-29", end:"2025-12-12", weeks:2, title:"Record 30s GIF showing LMS tracking", deliverables:"GIF linked on portfolio", estW:1, estTot:2, deps:"P2 A2 build; OBS/Kdenlive", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P2-4", phase:"P2 - Artifact 3 (Assessment Pack)", start:"2025-12-13", end:"2025-12-19", weeks:1, title:"Create standards-aligned item bank + rubric + remediation guide", deliverables:"PDF pack + 2-min screencast", estW:6, estTot:8, deps:"P1; target grade", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P3-1", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Write portfolio narratives (problem→design→outcomes)", deliverables:"Narratives posted", estW:2, estTot:6, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P3-2", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Update resume (1 page) + micro SOW template", deliverables:"Resume PDF; SOW.md", estW:2, estTot:6, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P3-3", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Set LinkedIn/Indeed saved searches; shortlist 20 leads", deliverables:"Saved searches; lead sheet", estW:2, estTot:4, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P4-1", phase:"P4 - First Contracts (US-based)", start:"2026-02-01", end:"2026-04-30", weeks:12.9, title:"Apply to 5–8 roles/week (tailored)", deliverables:"Apps log; pipeline", estW:2, estTot:24, deps:"P3", owner:"Mandy", prio:"H", status:"Not Started", notes:"Sustain 12 weeks"},
-  {id:"P4-2", phase:"P4 - First Contracts (US-based)", start:"2026-02-01", end:"2026-03-01", weeks:4.3, title:"Land first 40–80h project; execute nights/weekends", deliverables:"Signed SOW; first deliverables; testimonial", estW:6, estTot:40, deps:"P4 pipeline", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P4-3", phase:"P4 - First Contracts (US-based)", start:"2026-03-02", end:"2026-04-30", weeks:8.3, title:"Land second 40–80h project; execute", deliverables:"Signed SOW; deliverables accepted", estW:6, estTot:40, deps:"P4 pipeline", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P5-1", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-06-15", weeks:6.6, title:"Confirm clients allow work from abroad; shift to 1099 if needed", deliverables:"Email confirmations/addenda", estW:1, estTot:4, deps:"Active clients", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P5-2", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-05-20", weeks:2.9, title:"Set up invoicing & payments (Wise/Payoneer); export templates", deliverables:"Invoice template; payment verified", estW:1, estTot:3, deps:"None", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P5-3", phase:"P5 - Pre-Move Hardening", start:"2026-05-10", end:"2026-06-15", weeks:5, title:"Secure one retainer (10–15 hrs/wk) for June/July", deliverables:"Signed retainer SOW", estW:2, estTot:8, deps:"P4 clients", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P6-1", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-31", weeks:6.7, title:"Start invoicing from Uruguay; track hours & net ratio (0.723 baseline)", deliverables:"Updated sheet; first invoice from Uruguay", estW:1, estTot:4, deps:"P5 payments ready", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P6-2", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-15", weeks:4.3, title:"Scale to ~20 hrs/wk at $40–$55/hr; update portfolio with case notes", deliverables:"Hours logs; updated portfolio", estW:6, estTot:40, deps:"P5 retainer", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P6-3", phase:"P6 - Post-Move Ramp", start:"2026-07-16", end:"2026-07-31", weeks:2.3, title:"Evaluate adding a second client or expanding retainer", deliverables:"Decision note; outreach", estW:2, estTot:6, deps:"Throughput stable", owner:"Mandy", prio:"M", status:"Not Started", notes:""}
+/* ====== Configure your artifact containers here ====== */
+const ITEMS = [
+  {
+    id:"sample-capture",
+    title:"15–30s Sample Capture",
+    tag:"Video",
+    desc:"Quick screen recording (OBS/Kdenlive) demonstrating polish and voice levels.",
+    links:[
+      {label:"Play MP4", href:"/artifacts/2025-10-sample-capture.mp4"},
+      {label:"Play WEBM", href:"/artifacts/2025-10-sample-capture.webm"}
+    ],
+    checklist:[
+      "Audio balanced (voice ≥ -16 LUFS)",
+      "Cursor/zoom clear at 100–125%",
+      "No PII visible"
+    ],
+    notes:""
+  },
+  {
+    id:"portfolio-shell",
+    title:"Portfolio Shell (3 Empty Slots)",
+    tag:"Site",
+    desc:"Live portfolio with three reserved placeholders for work samples.",
+    links:[
+      {label:"Open Home", href:"/"},
+      {label:"Slot 1 Page", href:"/work/slot-1.html"},
+      {label:"Slot 2 Page", href:"/work/slot-2.html"},
+      {label:"Slot 3 Page", href:"/work/slot-3.html"}
+    ],
+    checklist:[
+      "Home has two tiles (Artifacts, Résumé)",
+      "Three sample slots visible",
+      "Mobile layout verified"
+    ],
+    notes:"If slot pages don’t exist yet, create /work/*.html later."
+  },
+  {
+    id:"h5p-microlearning",
+    title:"H5P Microlearning (10–15 min)",
+    tag:"H5P",
+    desc:"Interactive video + checks; exported for web; accessibility notes included.",
+    links:[
+      {label:"Open H5P (HTML export)", href:"/artifacts/h5p-microlearning.html"},
+      {label:"Download .h5p source", href:"/artifacts/h5p-microlearning.h5p"},
+      {label:"WCAG Notes (PDF)", href:"/artifacts/h5p-wcag-notes.pdf"}
+    ],
+    checklist:[
+      "Captions on video segments",
+      "Color contrast ≥ 4.5:1",
+      "Keyboard-only completes all interactions"
+    ],
+    notes:"Created in Lumi or Moodle H5P; export as single HTML for Pages."
+  },
+  {
+    id:"adapt-scorm",
+    title:"Adapt Course (SCORM)",
+    tag:"SCORM",
+    desc:"Adapt Authoring course with quiz; provide SCORM 1.2 & 2004 packages plus a web build.",
+    links:[
+      {label:"Download SCORM 1.2 ZIP", href:"/artifacts/adapt-course-scorm12.zip"},
+      {label:"Download SCORM 2004 ZIP", href:"/artifacts/adapt-course-scorm2004.zip"},
+      {label:"Live Web Build", href:"/artifacts/adapt-web/index.html"}
+    ],
+    checklist:[
+      "SCORM 1.2 passes LMS test",
+      "SCORM 2004 passes LMS test",
+      "Web build loads on GitHub Pages"
+    ],
+    notes:"Keep SCORM Zips < 100MB for repo; use Git LFS if needed."
+  },
+  {
+    id:"lms-tracking-gif",
+    title:"LMS Tracking Proof (GIF)",
+    tag:"GIF",
+    desc:"30s capture showing completion/score reported by LMS from the Adapt package.",
+    links:[
+      {label:"View Tracking GIF", href:"/artifacts/adapt-tracking.gif"}
+    ],
+    checklist:[
+      "Shows course launch → attempt → completion",
+      "Score visible in LMS gradebook",
+      "GIF ≤ 15 MB"
+    ],
+    notes:"Use OBS + convert to GIF (ffmpeg/convert) or Kdenlive render."
+  },
+  {
+    id:"assessment-pack",
+    title:"Assessment Pack",
+    tag:"PDF + Video",
+    desc:"Standards-aligned item bank + rubric + remediation guide + 2-min walkthrough.",
+    links:[
+      {label:"Download Assessment Pack (PDF)", href:"/artifacts/assessment-pack.pdf"},
+      {label:"Watch 2-min Screencast", href:"/artifacts/assessment-walkthrough.mp4"}
+    ],
+    checklist:[
+      "Standards mapping table included",
+      "Rubric & remediation steps clear",
+      "PDF tagged for accessibility"
+    ],
+    notes:"Tag PDF for headings, lists, tables; include alt text for figures."
+  },
+  {
+    id:"narratives",
+    title:"Portfolio Narratives",
+    tag:"HTML",
+    desc:"Problem → Design → Outcomes write-ups for each artifact.",
+    links:[
+      {label:"Narrative: H5P Microlearning", href:"/mandy/narratives/h5p-microlearning.html"},
+      {label:"Narrative: Adapt Course", href:"/mandy/narratives/adapt-course.html"},
+      {label:"Narrative: Assessment Pack", href:"/mandy/narratives/assessment-pack.html"}
+    ],
+    checklist:[
+      "Each narrative ≤ 500 words",
+      "Metrics & evidence included",
+      "Role split: what Mandy did vs. tools"
+    ],
+    notes:"Create HTML files under /mandy/narratives/ as you draft."
+  },
+  {
+    id:"resume-sow",
+    title:"Résumé + Micro SOW Template",
+    tag:"Docs",
+    desc:"Final 1-page résumé plus a short Statement of Work template for proposals.",
+    links:[
+      {label:"Résumé (PDF)", href:"/A.%20Miller%20Resume%202025-2.pdf"},
+      {label:"SOW Template (Markdown)", href:"/SOW.md"}
+    ],
+    checklist:[
+      "Résumé is ATS-friendly PDF",
+      "SOW has scope, deliverables, timeline, rate",
+      "Contact details consistent"
+    ],
+    notes:"If SOW.md doesn’t exist yet, add one at repo root."
+  }
 ];
 
-/* ---- Persistence ---- */
-const KEY = "mandy_tasks_v1";
-const saved = JSON.parse(localStorage.getItem(KEY)||"{}");
-DATA.forEach(t => { if(saved[t.id]) { t.status = saved[t.id].status || t.status; t.notes = saved[t.id].notes ?? t.notes; } });
-
-/* ---- Filters ---- */
-const phases = ["", ...new Set(DATA.map(d=>d.phase))];
-const selPhase = document.getElementById('phase');
-selPhase.innerHTML = phases.map(p=>`<option${p===""?' selected':''}>${p||'Phase: All'}</option>`).join("");
-
-const selStatus = document.getElementById('status');
-const selPrio = document.getElementById('prio');
-const search = document.getElementById('search');
-const reset = document.getElementById('reset');
-const exportBtn = document.getElementById('export');
-const tbody = document.getElementById('tbody');
-const overall = document.getElementById('overall');
-const statTxt = document.getElementById('statTxt');
+/* ====== UI/logic (localStorage persistence) ====== */
+const KEY = "mandy_portfolio_containers_v1";
+const SAVED = JSON.parse(localStorage.getItem(KEY) || "{}");
+const CARDS = document.getElementById('cards');
 document.getElementById('year').textContent = new Date().getFullYear();
 
-function render(){
-  const pf = selPhase.value; const sf = selStatus.value; const pr = selPrio.value; const q = search.value.toLowerCase();
-  const rows = DATA.filter(d=>{
-    return (!pf || d.phase===pf) &&
-           (!sf || d.status===sf) &&
-           (!pr || d.prio===pr) &&
-           (!q || [d.title,d.deliverables,d.notes,d.phase].join(" ").toLowerCase().includes(q));
-  });
-  // overall stats
-  const done = DATA.filter(d=>d.status==="Done").length;
-  overall.style.width = Math.round(100*done/DATA.length)+"%";
-  statTxt.textContent = `${done}/${DATA.length} done · ${rows.length} shown`;
-  // build table
-  tbody.innerHTML = "";
-  rows.forEach(d=>{
-    const tr = document.createElement('tr'); tr.className="row"; tr.id = d.id;
-    tr.innerHTML = `
-      <td class="nowrap"><strong>${d.phase}</strong><div class="muted">${d.deps?("Deps: "+d.deps):"&nbsp;"}</div></td>
-      <td>
-        <div><strong>${d.title}</strong> <span class="tag">Owner: ${d.owner}</span></div>
-        <div class="muted">${d.deliverables}</div>
-      </td>
-      <td class="nowrap"><div>${d.start} → ${d.end}</div><div class="muted">${d.weeks} wks</div></td>
-      <td class="nowrap">${d.prio}</td>
-      <td class="nowrap">
-        <select data-id="${d.id}" class="status">
-          ${["Not Started","In Progress","Blocked","Done"].map(s=>`<option${s===d.status?' selected':''}>${s}</option>`).join("")}
-        </select>
-      </td>
-      <td>
-        <textarea data-id="${d.id}" class="note" rows="2" placeholder="Notes…">${d.notes||""}</textarea>
-      </td>`;
-    tbody.appendChild(tr);
-  });
-  // attach handlers
-  tbody.querySelectorAll('.status').forEach(el=>{
-    el.onchange = () => {
-      const id = el.dataset.id;
-      const task = DATA.find(x=>x.id===id); task.status = el.value;
-      saved[id] = saved[id] || {}; saved[id].status = el.value; saved[id].notes = task.notes || "";
-      localStorage.setItem(KEY, JSON.stringify(saved));
-      render(); // update overall bar
-    }
-  });
-  tbody.querySelectorAll('.note').forEach(el=>{
-    el.oninput = () => {
-      const id = el.dataset.id;
-      const task = DATA.find(x=>x.id===id); task.notes = el.value;
-      saved[id] = saved[id] || {}; saved[id].status = task.status; saved[id].notes = el.value;
-      localStorage.setItem(KEY, JSON.stringify(saved));
-    }
-  });
+function cardHTML(item, saved) {
+  const status = (saved?.status) || "Not Started";
+  const notes  = (saved?.notes)  || item.notes || "";
+  const checks = (saved?.checks) || Array(item.checklist.length).fill(false);
+  const progress = Math.round(100 * checks.filter(Boolean).length / checks.length);
+
+  const linksHTML = item.links.map(l => `<a class="btn" href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join("");
+  const checklistHTML = item.checklist.map((c, i) => `
+    <label><input type="checkbox" data-id="${item.id}" data-idx="${i}" ${checks[i] ? "checked":""} /> <span>${c}</span></label>
+  `).join("");
+
+  return `
+    <article class="card" id="${item.id}">
+      <div class="title">
+        <div>
+          <h3 style="margin:.2rem 0">${item.title}</h3>
+          <div class="muted meta">${item.desc} <span class="pill">${item.tag}</span></div>
+        </div>
+        <div>
+          <select data-id="${item.id}" class="status">
+            ${["Not Started","In Progress","Blocked","Done"].map(s=>`<option ${s===status?"selected":""}>${s}</option>`).join("")}
+          </select>
+        </div>
+      </div>
+
+      <div class="links">${linksHTML}</div>
+
+      <div class="checklist">${checklistHTML}</div>
+
+      <div class="row">
+        <div class="bar" style="width:220px"><span style="width:${progress}%" data-prog="${item.id}"></span></div>
+        <span class="muted">${checks.filter(Boolean).length}/${checks.length} checklist items done</span>
+      </div>
+
+      <div>
+        <label class="muted" for="n-${item.id}">Notes</label>
+        <textarea id="n-${item.id}" data-id="${item.id}" rows="3" placeholder="Add notes, links, or to-dos…">${notes}</textarea>
+      </div>
+    </article>
+  `;
 }
+
+function save(id, data){
+  const next = {...SAVED, [id]: {...(SAVED[id]||{}), ...data}};
+  localStorage.setItem(KEY, JSON.stringify(next));
+}
+
+function render(){
+  CARDS.innerHTML = ITEMS.map(it => cardHTML(it, SAVED[it.id])).join("");
+
+  // attach handlers
+  CARDS.querySelectorAll('select.status').forEach(sel=>{
+    sel.onchange = ()=>{
+      const id = sel.dataset.id;
+      save(id, {status: sel.value});
+      updateOverall();
+    };
+  });
+
+  CARDS.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.onchange = ()=>{
+      const id = cb.dataset.id, idx = +cb.dataset.idx;
+      const cur = SAVED[id]?.checks || Array(ITEMS.find(x=>x.id===id).checklist.length).fill(false);
+      cur[idx] = cb.checked;
+      save(id, {checks: cur});
+      // update per-card progress bar
+      const progEl = CARDS.querySelector(`span[data-prog="${id}"]`);
+      const pct = Math.round(100 * cur.filter(Boolean).length / cur.length);
+      if(progEl) progEl.style.width = pct + "%";
+      updateOverall();
+    };
+  });
+
+  CARDS.querySelectorAll('textarea').forEach(ta=>{
+    ta.oninput = ()=>{
+      save(ta.dataset.id, {notes: ta.value});
+    };
+  });
+
+  updateOverall();
+}
+
+function updateOverall(){
+  const total = ITEMS.reduce((acc,it)=> acc + it.checklist.length, 0);
+  const done  = ITEMS.reduce((acc,it)=>{
+    const checks = (SAVED[it.id]?.checks) || [];
+    return acc + checks.filter(Boolean).length;
+  }, 0);
+  const pct = total ? Math.round(100*done/total) : 0;
+  document.getElementById('overall').style.width = pct+"%";
+  document.getElementById('statTxt').textContent = `${done}/${total} checklist items complete`;
+}
+
 render();
 
-selPhase.onchange = selStatus.onchange = selPrio.onchange = () => render();
-search.oninput = () => render();
-reset.onclick = ()=>{
-  selPhase.value = ""; selStatus.value=""; selPrio.value=""; search.value="";
-  render();
-};
-exportBtn.onclick = ()=>{
-  const blob = new Blob([JSON.stringify(DATA,null,2)], {type:"application/json"});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "mandy_tasks_export.json"; a.click();
+// Export + Reset
+document.getElementById('export').onclick = ()=>{
+  const blob = new Blob([JSON.stringify(JSON.parse(localStorage.getItem(KEY)||"{}"), null, 2)], {type:"application/json"});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "mandy_artifacts_status.json"; a.click();
   URL.revokeObjectURL(a.href);
 };
-
-/* Jump to phase if hash present */
-if(location.hash){
-  const phaseName = decodeURIComponent(location.hash.slice(1));
-  if(phases.includes(phaseName)){ selPhase.value = phaseName; render(); }
-}
+document.getElementById('reset').onclick = ()=>{
+  localStorage.removeItem(KEY);
+  location.reload();
+};
 </script>
 </body>
 </html>
