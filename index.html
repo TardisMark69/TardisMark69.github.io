@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mandy Miller — Portfolio & Roadmap</title>
-<meta name="description" content="Portfolio, résumé, and delivery roadmap for Mandy Miller." />
+<title>Amanda Miller — Portfolio & Roadmap</title>
+<meta name="description" content="Portfolio, résumé, and delivery roadmap for Amanda Miller." />
 <meta name="color-scheme" content="light dark" />
 <style>
   :root{
@@ -66,12 +66,12 @@
 
   <section class="grid" aria-label="Featured">
     <article class="card">
-      <header style="display:flex;align-items:center;gap:10px"><span class="pill">Artifacts</span><h2 style="margin:0;font-size:1.1rem">Mandy’s Curriculum Artifacts</h2></header>
+      <header style="display:flex;align-items:center;gap:10px"><span class="pill">Artifacts</span><h2 style="margin:0;font-size:1.1rem">Amanda’s Curriculum Artifacts</h2></header>
       <p class="muted">Lesson plans, SCORM/H5P, assessment packs.</p>
       <a class="btn" href="/mandy/">Open Artifacts</a>
     </article>
     <article class="card">
-      <header style="display:flex;align-items:center;gap:10px"><span class="pill">Résumé</span><h2 style="margin:0;font-size:1.1rem">Mandy’s Résumé (PDF)</h2></header>
+      <header style="display:flex;align-items:center;gap:10px"><span class="pill">Résumé</span><h2 style="margin:0;font-size:1.1rem">Amanda’s Résumé (PDF)</h2></header>
       <p class="muted">Opens in a new tab.</p>
       <a class="btn" href="/A.%20Miller%20Resume%202025-2.pdf" target="_blank" rel="noopener">View Résumé</a>
     </article>
@@ -81,7 +81,7 @@
   <div class="road" id="road"></div>
 
   <footer>
-    <span>© <span id="year"></span> Mandy Miller</span>
+    <span>© <span id="year"></span> Amanda Miller</span>
     <span class="muted">Local progress is stored in <code>localStorage</code>. Edit details in <a href="/mandy/">Tracker</a>.</span>
   </footer>
 </div>
@@ -89,27 +89,27 @@
 <script>
 /* ---- Task data (single source of truth) ---- */
 const TASKS = [
-  {id:"P0-1", phase:"P0 - Guardrails", start:"2025-10-02", end:"2025-10-08", weeks:1, title:"Choose niche & time budget; lock weekly cadence", deliverables:"Niche statement; Tue/Thu 1.5h + Weekend 3h blocks; tracker adopted", estW:0, estTot:2, deps:"", owner:"Mandy", prio:"M", status:"Not Started", notes:"Keep total <= 2 hours this week"},
-  {id:"P1-1", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install Adapt Authoring & verify SCORM export", deliverables:"Adapt running; sample SCORM 1.2 ZIP", estW:2, estTot:6, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:"Linux/FOSS only"},
-  {id:"P1-2", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install H5P authoring (LUMI or Moodle H5P)", deliverables:"H5P authoring ready; trivial interactive", estW:1.5, estTot:5, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P1-3", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install OBS + Kdenlive and test recording", deliverables:"15–30s sample capture", estW:1, estTot:3, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P1-4", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Publish minimal portfolio site", deliverables:"Live URL w/ 3 empty slots", estW:1.5, estTot:5, deps:"P0", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P2-1", phase:"P2 - Artifact 1 (H5P)", start:"2025-11-01", end:"2025-11-14", weeks:2, title:"Design & build H5P microlearning", deliverables:"10–15 min H5P; WCAG notes; link on portfolio", estW:6, estTot:12, deps:"P1", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P2-2", phase:"P2 - Artifact 2 (Adapt SCORM)", start:"2025-11-15", end:"2025-12-12", weeks:4.1, title:"Build Adapt course; export SCORM 1.2 & 2004; LMS test", deliverables:"SCORM 1.2 & 2004 ZIPs; LMS test passed", estW:6, estTot:24, deps:"P1", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P2-3", phase:"P2 - Artifact 2 (Adapt SCORM)", start:"2025-11-29", end:"2025-12-12", weeks:2, title:"Record 30s GIF showing LMS tracking", deliverables:"GIF linked on portfolio", estW:1, estTot:2, deps:"P2 A2 build; OBS/Kdenlive", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P2-4", phase:"P2 - Artifact 3 (Assessment Pack)", start:"2025-12-13", end:"2025-12-19", weeks:1, title:"Create standards-aligned item bank + rubric + remediation guide", deliverables:"PDF pack + 2-min screencast", estW:6, estTot:8, deps:"P1; target grade", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P3-1", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Write portfolio narratives (problem→design→outcomes)", deliverables:"Narratives posted", estW:2, estTot:6, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P3-2", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Update resume (1 page) + micro SOW template", deliverables:"Resume PDF; SOW.md", estW:2, estTot:6, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P3-3", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Set LinkedIn/Indeed saved searches; shortlist 20 leads", deliverables:"Saved searches; lead sheet", estW:2, estTot:4, deps:"P2", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P4-1", phase:"P4 - First Contracts (US-based)", start:"2026-02-01", end:"2026-04-30", weeks:12.9, title:"Apply to 5–8 roles/week (tailored)", deliverables:"Apps log; pipeline", estW:2, estTot:24, deps:"P3", owner:"Mandy", prio:"H", status:"Not Started", notes:"Sustain 12 weeks"},
-  {id:"P4-2", phase:"P4 - First Contracts (US-based)", start:"2026-02-01", end:"2026-03-01", weeks:4.3, title:"Land first 40–80h project; execute nights/weekends", deliverables:"Signed SOW; first deliverables; testimonial", estW:6, estTot:40, deps:"P4 pipeline", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P4-3", phase:"P4 - First Contracts (US-based)", start:"2026-03-02", end:"2026-04-30", weeks:8.3, title:"Land second 40–80h project; execute", deliverables:"Signed SOW; deliverables accepted", estW:6, estTot:40, deps:"P4 pipeline", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P5-1", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-06-15", weeks:6.6, title:"Confirm clients allow work from abroad; shift to 1099 if needed", deliverables:"Email confirmations/addenda", estW:1, estTot:4, deps:"Active clients", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P5-2", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-05-20", weeks:2.9, title:"Set up invoicing & payments (Wise/Payoneer); export templates", deliverables:"Invoice template; payment verified", estW:1, estTot:3, deps:"None", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P5-3", phase:"P5 - Pre-Move Hardening", start:"2026-05-10", end:"2026-06-15", weeks:5, title:"Secure one retainer (10–15 hrs/wk) for June/July", deliverables:"Signed retainer SOW", estW:2, estTot:8, deps:"P4 clients", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P6-1", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-31", weeks:6.7, title:"Start invoicing from Uruguay; track hours & net ratio (0.723 baseline)", deliverables:"Updated sheet; first invoice from Uruguay", estW:1, estTot:4, deps:"P5 payments ready", owner:"Mandy", prio:"M", status:"Not Started", notes:""},
-  {id:"P6-2", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-15", weeks:4.3, title:"Scale to ~20 hrs/wk at $40–$55/hr; update portfolio with case notes", deliverables:"Hours logs; updated portfolio", estW:6, estTot:40, deps:"P5 retainer", owner:"Mandy", prio:"H", status:"Not Started", notes:""},
-  {id:"P6-3", phase:"P6 - Post-Move Ramp", start:"2026-07-16", end:"2026-07-31", weeks:2.3, title:"Evaluate adding a second client or expanding retainer", deliverables:"Decision note; outreach", estW:2, estTot:6, deps:"Throughput stable", owner:"Mandy", prio:"M", status:"Not Started", notes:""}
+  {id:"P0-1", phase:"P0 - Guardrails", start:"2025-10-02", end:"2025-10-08", weeks:1, title:"Choose niche & time budget; lock weekly cadence", deliverables:"Niche statement; Tue/Thu 1.5h + Weekend 3h blocks; tracker adopted", estW:0, estTot:2, deps:"", owner:"Amanda", prio:"M", status:"Not Started", notes:"Keep total <= 2 hours this week"},
+  {id:"P1-1", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install Adapt Authoring & verify SCORM export", deliverables:"Adapt running; sample SCORM 1.2 ZIP", estW:2, estTot:6, deps:"P0", owner:"Amanda", prio:"M", status:"Not Started", notes:"Linux/FOSS only"},
+  {id:"P1-2", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install H5P authoring (LUMI or Moodle H5P)", deliverables:"H5P authoring ready; trivial interactive", estW:1.5, estTot:5, deps:"P0", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P1-3", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Install OBS + Kdenlive and test recording", deliverables:"15–30s sample capture", estW:1, estTot:3, deps:"P0", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P1-4", phase:"P1 - Tools & Portfolio", start:"2025-10-09", end:"2025-10-31", weeks:3.3, title:"Publish minimal portfolio site", deliverables:"Live URL w/ 3 empty slots", estW:1.5, estTot:5, deps:"P0", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P2-1", phase:"P2 - Artifact 1 (H5P)", start:"2025-11-01", end:"2025-11-14", weeks:2, title:"Design & build H5P microlearning", deliverables:"10–15 min H5P; WCAG notes; link on portfolio", estW:6, estTot:12, deps:"P1", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
+  {id:"P2-2", phase:"P2 - Artifact 2 (Adapt SCORM)", start:"2025-11-15", end:"2025-12-12", weeks:4.1, title:"Build Adapt course; export SCORM 1.2 & 2004; LMS test", deliverables:"SCORM 1.2 & 2004 ZIPs; LMS test passed", estW:6, estTot:24, deps:"P1", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
+  {id:"P2-3", phase:"P2 - Artifact 2 (Adapt SCORM)", start:"2025-11-29", end:"2025-12-12", weeks:2, title:"Record 30s GIF showing LMS tracking", deliverables:"GIF linked on portfolio", estW:1, estTot:2, deps:"P2 A2 build; OBS/Kdenlive", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P2-4", phase:"P2 - Artifact 3 (Assessment Pack)", start:"2025-12-13", end:"2025-12-19", weeks:1, title:"Create standards-aligned item bank + rubric + remediation guide", deliverables:"PDF pack + 2-min screencast", estW:6, estTot:8, deps:"P1; target grade", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
+  {id:"P3-1", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Write portfolio narratives (problem→design→outcomes)", deliverables:"Narratives posted", estW:2, estTot:6, deps:"P2", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P3-2", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Update resume (1 page) + micro SOW template", deliverables:"Resume PDF; SOW.md", estW:2, estTot:6, deps:"P2", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P3-3", phase:"P3 - App Kit & Leads", start:"2025-12-20", end:"2026-01-31", weeks:6, title:"Set LinkedIn/Indeed saved searches; shortlist 20 leads", deliverables:"Saved searches; lead sheet", estW:2, estTot:4, deps:"P2", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P4-1", phase:"P4 - First Contracts (US-based)", start:"2026-02-01", end:"2026-04-30", weeks:12.9, title:"Apply to 5–8 roles/week (tailored)", deliverables:"Apps log; pipeline", estW:2, estTot:24, deps:"P3", owner:"Amanda", prio:"H", status:"Not Started", notes:"Sustain 12 weeks"},
+  {id:"P4-2", phase:"P4 - First Contracts (US-based)", start:"2026-02-01", end:"2026-03-01", weeks:4.3, title:"Land first 40–80h project; execute nights/weekends", deliverables:"Signed SOW; first deliverables; testimonial", estW:6, estTot:40, deps:"P4 pipeline", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
+  {id:"P4-3", phase:"P4 - First Contracts (US-based)", start:"2026-03-02", end:"2026-04-30", weeks:8.3, title:"Land second 40–80h project; execute", deliverables:"Signed SOW; deliverables accepted", estW:6, estTot:40, deps:"P4 pipeline", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
+  {id:"P5-1", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-06-15", weeks:6.6, title:"Confirm clients allow work from abroad; shift to 1099 if needed", deliverables:"Email confirmations/addenda", estW:1, estTot:4, deps:"Active clients", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P5-2", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-05-20", weeks:2.9, title:"Set up invoicing & payments (Wise/Payoneer); export templates", deliverables:"Invoice template; payment verified", estW:1, estTot:3, deps:"None", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P5-3", phase:"P5 - Pre-Move Hardening", start:"2026-05-10", end:"2026-06-15", weeks:5, title:"Secure one retainer (10–15 hrs/wk) for June/July", deliverables:"Signed retainer SOW", estW:2, estTot:8, deps:"P4 clients", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
+  {id:"P6-1", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-31", weeks:6.7, title:"Start invoicing from Uruguay; track hours & net ratio (0.723 baseline)", deliverables:"Updated sheet; first invoice from Uruguay", estW:1, estTot:4, deps:"P5 payments ready", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P6-2", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-15", weeks:4.3, title:"Scale to ~20 hrs/wk at $40–$55/hr; update portfolio with case notes", deliverables:"Hours logs; updated portfolio", estW:6, estTot:40, deps:"P5 retainer", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
+  {id:"P6-3", phase:"P6 - Post-Move Ramp", start:"2026-07-16", end:"2026-07-31", weeks:2.3, title:"Evaluate adding a second client or expanding retainer", deliverables:"Decision note; outreach", estW:2, estTot:6, deps:"Throughput stable", owner:"Amanda", prio:"M", status:"Not Started", notes:""}
 ];
 
 /* Merge local progress (saved in mandy tracker) to compute phase progress */
