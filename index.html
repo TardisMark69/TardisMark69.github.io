@@ -42,35 +42,13 @@
   footer{margin:26px 0 8px;color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   code{background:color-mix(in oklab,var(--card) 80%, #000 20%);padding:2px 6px;border-radius:6px}
 
-  /* Headshot box (simple, no controls; placed top-left) */
-  .headshot-wrap{margin:0 0 14px 0}
-  .headshot{display:inline-block;border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
-  /* Prefer real image if available; otherwise embed PDF with viewer UI suppressed */
-  .headshot img{display:block;height:auto;max-width:100%}
-  .headshot-embed{display:block;border:0}
-  /* Optional: constrain width on very wide screens so it stays tasteful */
-  @media(min-width:781px){ .headshot{max-width:260px} }
+  /* Simple picture box for headshot (flows with other cards) */
+  .photo-box{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card)}
+  .photo-box object{display:block;width:100%;height:420px;border:0} /* adjust height if needed */
 </style>
 </head>
 <body>
 <div class="container">
-
-  <!-- Headshot box in the upper-left -->
-  <div class="headshot-wrap" aria-label="Headshot of Amanda Miller">
-    <div class="headshot">
-      <!-- If you export a PNG/JPG later, just swap to the <img> line and remove the <embed>. -->
-      <!-- <img src="/A_Miller_2025_Headshot.png" alt="Headshot of Amanda Miller"> -->
-      <embed class="headshot-embed"
-             src="/A_Miller_2025_Headshot.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-             type="application/pdf"
-             width="260"
-             height="340" />
-    </div>
-    <div style="margin-top:8px">
-      <a class="btn" href="/A_Miller_2025_Headshot.pdf" target="_blank" rel="noopener">Open Headshot</a>
-    </div>
-  </div>
-
   <header>
     <div class="brand">
       <div class="mark" aria-hidden="true">
@@ -91,11 +69,28 @@
   </section>
 
   <section class="grid" aria-label="Featured">
+    <!-- Headshot card (simple picture box; flows with grid) -->
+    <article class="card">
+      <header style="display:flex;align-items:center;gap:10px">
+        <span class="pill">Headshot</span>
+        <h2 style="margin:0;font-size:1.1rem">Amanda’s Photo</h2>
+      </header>
+      <div class="photo-box" role="img" aria-label="Headshot of Amanda Miller">
+        <object
+          data="/A_Miller_2025_Headshot.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+          type="application/pdf">
+          <p class="muted" style="margin:0;padding:10px">Can’t display PDF. <a href="/A_Miller_2025_Headshot.pdf" target="_blank" rel="noopener">Open the headshot</a>.</p>
+        </object>
+      </div>
+      <a class="btn" href="/A_Miller_2025_Headshot.pdf" target="_blank" rel="noopener">Open Headshot</a>
+    </article>
+
     <article class="card">
       <header style="display:flex;align-items:center;gap:10px"><span class="pill">Artifacts</span><h2 style="margin:0;font-size:1.1rem">Amanda’s Curriculum Artifacts</h2></header>
       <p class="muted">Lesson plans, SCORM/H5P, assessment packs.</p>
       <a class="btn" href="/mandy/">Open Artifacts</a>
     </article>
+
     <article class="card">
       <header style="display:flex;align-items:center;gap:10px"><span class="pill">Résumé</span><h2 style="margin:0;font-size:1.1rem">Amanda’s Résumé (PDF)</h2></header>
       <p class="muted">Opens in a new tab.</p>
@@ -138,7 +133,7 @@ const TASKS = [
   {id:"P6-3", phase:"P6 - Post-Move Ramp", start:"2026-07-16", end:"2026-07-31", weeks:2.3, title:"Evaluate adding a second client or expanding retainer", deliverables:"Decision note; outreach", estW:2, estTot:6, deps:"Throughput stable", owner:"Amanda", prio:"M", status:"Not Started", notes:""}
 ];
 
-/* Merge local progress */
+/* Merge local progress (saved in mandy tracker) to compute phase progress */
 const SAVED = JSON.parse(localStorage.getItem("mandy_tasks_v1")||"{}");
 const tasks = TASKS.map(t => ({...t, status: (SAVED[t.id]?.status ?? t.status)}));
 
