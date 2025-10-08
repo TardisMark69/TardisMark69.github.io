@@ -41,6 +41,10 @@
   .row small{color:var(--muted)}
   footer{margin:26px 0 8px;color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   code{background:color-mix(in oklab,var(--card) 80%, #000 20%);padding:2px 6px;border-radius:6px}
+
+  /* Headshot "picture box" */
+  .portrait{position:relative; width:100%; aspect-ratio:3/4; border:1px solid var(--border); border-radius:16px; background:var(--card); box-shadow:var(--shadow); overflow:hidden}
+  .portrait object{position:absolute; inset:0; width:100%; height:100%; border:0}
 </style>
 </head>
 <body>
@@ -70,11 +74,27 @@
       <p class="muted">Lesson plans, SCORM/H5P, assessment packs.</p>
       <a class="btn" href="/mandy/">Open Artifacts</a>
     </article>
+
     <article class="card">
       <header style="display:flex;align-items:center;gap:10px"><span class="pill">Résumé</span><h2 style="margin:0;font-size:1.1rem">Amanda’s Résumé (PDF)</h2></header>
       <p class="muted">Opens in a new tab.</p>
       <a class="btn" href="/A.%20Miller%20Resume%202025-2.pdf" target="_blank" rel="noopener">View Résumé</a>
     </article>
+
+    <!-- NEW: Headshot picture box -->
+    <article class="card">
+      <header style="display:flex;align-items:center;gap:10px">
+        <span class="pill">Headshot</span>
+        <h2 style="margin:0;font-size:1.1rem">Amanda’s Photo</h2>
+      </header>
+      <div class="portrait" role="img" aria-label="Headshot of Amanda Miller">
+        <object data="/A_Miller_2025_Headshot.pdf#page=1&view=FitH" type="application/pdf">
+          <p class="muted">Your browser can’t display the headshot PDF here. <a href="/A_Miller_2025_Headshot.pdf" target="_blank" rel="noopener">Open the headshot</a>.</p>
+        </object>
+      </div>
+      <a class="btn" href="/A_Miller_2025_Headshot.pdf" target="_blank" rel="noopener">Open Headshot</a>
+    </article>
+    <!-- /NEW -->
   </section>
 
   <h2 style="margin:22px 0 8px">Roadmap (P0 → P6)</h2>
@@ -107,42 +127,4 @@ const TASKS = [
   {id:"P5-1", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-06-15", weeks:6.6, title:"Confirm clients allow work from abroad; shift to 1099 if needed", deliverables:"Email confirmations/addenda", estW:1, estTot:4, deps:"Active clients", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
   {id:"P5-2", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-05-20", weeks:2.9, title:"Set up invoicing & payments (Wise/Payoneer); export templates", deliverables:"Invoice template; payment verified", estW:1, estTot:3, deps:"None", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
   {id:"P5-3", phase:"P5 - Pre-Move Hardening", start:"2026-05-10", end:"2026-06-15", weeks:5, title:"Secure one retainer (10–15 hrs/wk) for June/July", deliverables:"Signed retainer SOW", estW:2, estTot:8, deps:"P4 clients", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
-  {id:"P6-1", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-31", weeks:6.7, title:"Start invoicing from Uruguay; track hours & net ratio (0.723 baseline)", deliverables:"Updated sheet; first invoice from Uruguay", estW:1, estTot:4, deps:"P5 payments ready", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
-  {id:"P6-2", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-15", weeks:4.3, title:"Scale to ~20 hrs/wk at $40–$55/hr; update portfolio with case notes", deliverables:"Hours logs; updated portfolio", estW:6, estTot:40, deps:"P5 retainer", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
-  {id:"P6-3", phase:"P6 - Post-Move Ramp", start:"2026-07-16", end:"2026-07-31", weeks:2.3, title:"Evaluate adding a second client or expanding retainer", deliverables:"Decision note; outreach", estW:2, estTot:6, deps:"Throughput stable", owner:"Amanda", prio:"M", status:"Not Started", notes:""}
-];
-
-/* Merge local progress (saved in mandy tracker) to compute phase progress */
-const SAVED = JSON.parse(localStorage.getItem("mandy_tasks_v1")||"{}");
-const tasks = TASKS.map(t => ({...t, status: (SAVED[t.id]?.status ?? t.status)}));
-
-/* Compute progress by phase */
-const phases = [...new Set(tasks.map(t=>t.phase))].map(p => {
-  const list = tasks.filter(t=>t.phase===p);
-  const done = list.filter(t=>t.status==="Done").length;
-  return { phase:p, count:list.length, done, start: list.map(t=>t.start).sort()[0], end: list.map(t=>t.end).sort().slice(-1)[0] };
-});
-
-/* Render */
-const road = document.getElementById('road');
-phases.forEach(ph=>{
-  const pct = ph.count ? Math.round(100*ph.done/ph.count) : 0;
-  const row = document.createElement('div'); row.className='row';
-  row.innerHTML = `
-    <div>
-      <strong>${ph.phase}</strong><br/>
-      <small>${ph.start} → ${ph.end}</small>
-    </div>
-    <div>
-      <div class="bar" aria-label="Progress ${pct}%"><span style="width:${pct}%"></span></div>
-      <small>${ph.done}/${ph.count} tasks done</small>
-    </div>
-    <div style="text-align:right">
-      <a class="btn" href="/mandy/#${encodeURIComponent(ph.phase)}">Open</a>
-    </div>`;
-  road.appendChild(row);
-});
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+  {id:"P6-1", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-31", weeks:6.7, title:"Start invoicing from Uruguay; track hours & net ratio (0.723 baseline)", deliverables:"Updated sheet; first invoice from Uruguay", estW:1, estTot:4, deps:"P5 payments ready", owner:"Amanda", prio:"M", status:"Not Star
