@@ -19,13 +19,16 @@
   body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial;color:var(--text);background:linear-gradient(180deg,var(--bg1),var(--bg2))}
   .container{max-width:1000px;margin:0 auto;padding:clamp(16px,3vw,32px)}
   header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 18px}
-  .brand{display:flex;align-items:center;gap:10px}
-  .mark{width:40px;height:40px;display:grid;place-items:center;border-radius:10px;background:
+  .brand{display:flex;align-items:center;gap:12px}
+  /* 30% bigger star mark */
+  .mark{width:52px;height:52px;display:grid;place-items:center;border-radius:12px;background:
     radial-gradient(120% 120% at 20% 20%,var(--accent) 0%,transparent 60%),
     radial-gradient(120% 120% at 80% 80%,var(--accent2) 0%,transparent 60%),var(--card);
     border:1px solid var(--border);box-shadow:var(--shadow)}
-  .title{font-weight:700}
-  .sub{color:var(--muted)}
+  /* 30% bigger title + sub */
+  .title{font-weight:700;font-size:130%;line-height:1.1}
+  .sub{color:var(--muted);font-size:130%;line-height:1.2}
+
   .hero{margin:6px 0 22px;padding:clamp(16px,2.6vw,24px);border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
   .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
   .card{grid-column:span 6;display:grid;gap:10px;padding:16px;border:1px solid var(--border);border-radius:16px;background:var(--card);box-shadow:var(--shadow)}
@@ -48,7 +51,7 @@
   .card-photo img{display:block;width:100%;height:auto}
   .card-body{padding:16px}
 
-  /* Reduce this specific card's width by ~50% (span 3 of 12 columns instead of 6) */
+  /* Headshot reduced footprint (~50% of standard card width) */
   .card--half{grid-column:span 3}
   @media(max-width:780px){.card--half{grid-column:1/-1}}
 </style>
@@ -58,7 +61,8 @@
   <header>
     <div class="brand">
       <div class="mark" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <!-- 30% bigger icon -->
+        <svg width="29" height="29" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 3l3.5 6 6.5 1-4.7 4.6L18 21l-6-3.2L6 21l1.7-6.4L3 10l6.5-1L12 3z" stroke="currentColor" stroke-width="1.2" fill="none"/>
         </svg>
       </div>
