@@ -127,4 +127,42 @@ const TASKS = [
   {id:"P5-1", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-06-15", weeks:6.6, title:"Confirm clients allow work from abroad; shift to 1099 if needed", deliverables:"Email confirmations/addenda", estW:1, estTot:4, deps:"Active clients", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
   {id:"P5-2", phase:"P5 - Pre-Move Hardening", start:"2026-05-01", end:"2026-05-20", weeks:2.9, title:"Set up invoicing & payments (Wise/Payoneer); export templates", deliverables:"Invoice template; payment verified", estW:1, estTot:3, deps:"None", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
   {id:"P5-3", phase:"P5 - Pre-Move Hardening", start:"2026-05-10", end:"2026-06-15", weeks:5, title:"Secure one retainer (10–15 hrs/wk) for June/July", deliverables:"Signed retainer SOW", estW:2, estTot:8, deps:"P4 clients", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
-  {id:"P6-1", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-31", weeks:6.7, title:"Start invoicing from Uruguay; track hours & net ratio (0.723 baseline)", deliverables:"Updated sheet; first invoice from Uruguay", estW:1, estTot:4, deps:"P5 payments ready", owner:"Amanda", prio:"M", status:"Not Star
+  {id:"P6-1", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-31", weeks:6.7, title:"Start invoicing from Uruguay; track hours & net ratio (0.723 baseline)", deliverables:"Updated sheet; first invoice from Uruguay", estW:1, estTot:4, deps:"P5 payments ready", owner:"Amanda", prio:"M", status:"Not Started", notes:""},
+  {id:"P6-2", phase:"P6 - Post-Move Ramp", start:"2026-06-16", end:"2026-07-15", weeks:4.3, title:"Scale to ~20 hrs/wk at $40–$55/hr; update portfolio with case notes", deliverables:"Hours logs; updated portfolio", estW:6, estTot:40, deps:"P5 retainer", owner:"Amanda", prio:"H", status:"Not Started", notes:""},
+  {id:"P6-3", phase:"P6 - Post-Move Ramp", start:"2026-07-16", end:"2026-07-31", weeks:2.3, title:"Evaluate adding a second client or expanding retainer", deliverables:"Decision note; outreach", estW:2, estTot:6, deps:"Throughput stable", owner:"Amanda", prio:"M", status:"Not Started", notes:""}
+];
+
+/* Merge local progress (saved in mandy tracker) to compute phase progress */
+const SAVED = JSON.parse(localStorage.getItem("mandy_tasks_v1")||"{}");
+const tasks = TASKS.map(t => ({...t, status: (SAVED[t.id]?.status ?? t.status)}));
+
+/* Compute progress by phase */
+const phases = [...new Set(tasks.map(t=>t.phase))].map(p => {
+  const list = tasks.filter(t=>t.phase===p);
+  const done = list.filter(t=>t.status==="Done").length;
+  return { phase:p, count:list.length, done, start: list.map(t=>t.start).sort()[0], end: list.map(t=>t.end).sort().slice(-1)[0] };
+});
+
+/* Render */
+const road = document.getElementById('road');
+phases.forEach(ph=>{
+  const pct = ph.count ? Math.round(100*ph.done/ph.count) : 0;
+  const row = document.createElement('div'); row.className='row';
+  row.innerHTML = `
+    <div>
+      <strong>${ph.phase}</strong><br/>
+      <small>${ph.start} → ${ph.end}</small>
+    </div>
+    <div>
+      <div class="bar" aria-label="Progress ${pct}%"><span style="width:${pct}%"></span></div>
+      <small>${ph.done}/${ph.count} tasks done</small>
+    </div>
+    <div style="text-align:right">
+      <a class="btn" href="/mandy/#${encodeURIComponent(ph.phase)}">Open</a>
+    </div>`;
+  road.appendChild(row);
+});
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
