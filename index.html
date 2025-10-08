@@ -55,19 +55,23 @@
   .card--half{grid-column:span 3}
   @media(max-width:780px){.card--half{grid-column:1/-1}}
 
-  /* Hover affordances (cards & buttons) */
+  /* Hover affordances — VERY subtle (~50% of prior effect) */
   @media (hover:hover){
     .card{transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
     .card:hover{
-      background:color-mix(in oklab,var(--card) 92%, var(--accent) 8%);
-      border-color:color-mix(in oklab,var(--border) 70%, var(--accent) 30%);
-      box-shadow:0 12px 28px rgba(14,30,64,.18);
-      transform:translateY(-2px)
+      /* previously accent @ 8% → now 4% */
+      background:color-mix(in oklab,var(--card) 96%, var(--accent) 4%);
+      /* border mix previously 30% → now 15% */
+      border-color:color-mix(in oklab,var(--border) 85%, var(--accent) 15%);
+      /* shadow softened ~50% & lift reduced to 1px */
+      box-shadow:0 6px 14px rgba(14,30,64,.12);
+      transform:translateY(-1px)
     }
     .btn{transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
     .btn:hover{
-      border-color:color-mix(in oklab,var(--border) 60%, var(--accent) 40%);
-      box-shadow:0 8px 18px rgba(14,30,64,.16)
+      /* previously 40% → now 20% */
+      border-color:color-mix(in oklab,var(--border) 80%, var(--accent) 20%);
+      box-shadow:0 4px 9px rgba(14,30,64,.12)
     }
   }
   .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -156,7 +160,7 @@ const TASKS = [
   {id:"P6-3", phase:"P6 - Post-Move Ramp", start:"2026-07-16", end:"2026-07-31", weeks:2.3, title:"Evaluate adding a second client or expanding retainer", deliverables:"Decision note; outreach", estW:2, estTot:6, deps:"Throughput stable", owner:"Amanda", prio:"M", status:"Not Started", notes:""}
 ];
 
-/* Merge local progress (saved in mandy tracker) to compute phase progress */
+/* Merge local progress */
 const SAVED = JSON.parse(localStorage.getItem("mandy_tasks_v1")||"{}");
 const tasks = TASKS.map(t => ({...t, status: (SAVED[t.id]?.status ?? t.status)}));
 
