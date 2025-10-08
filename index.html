@@ -54,6 +54,23 @@
   /* Headshot reduced footprint (~50% of standard card width) */
   .card--half{grid-column:span 3}
   @media(max-width:780px){.card--half{grid-column:1/-1}}
+
+  /* Hover affordances (cards & buttons) */
+  @media (hover:hover){
+    .card{transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+    .card:hover{
+      background:color-mix(in oklab,var(--card) 92%, var(--accent) 8%);
+      border-color:color-mix(in oklab,var(--border) 70%, var(--accent) 30%);
+      box-shadow:0 12px 28px rgba(14,30,64,.18);
+      transform:translateY(-2px)
+    }
+    .btn{transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+    .btn:hover{
+      border-color:color-mix(in oklab,var(--border) 60%, var(--accent) 40%);
+      box-shadow:0 8px 18px rgba(14,30,64,.16)
+    }
+  }
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
 </head>
 <body>
