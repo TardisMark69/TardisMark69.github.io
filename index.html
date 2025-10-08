@@ -43,10 +43,14 @@
   footer{margin:26px 0 8px;color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   code{background:color-mix(in oklab,var(--card) 80%, #000 20%);padding:2px 6px;border-radius:6px}
 
-  /* Headshot card variant: show the image as the foreground (edge-to-edge), then body content */
+  /* Headshot card variant: full-width image at top */
   .card-photo{padding:0;overflow:hidden}
-  .card-photo img{display:block;width:100%;height:auto} /* natural aspect ratio */
+  .card-photo img{display:block;width:100%;height:auto}
   .card-body{padding:16px}
+
+  /* Reduce this specific card's width by ~50% (span 3 of 12 columns instead of 6) */
+  .card--half{grid-column:span 3}
+  @media(max-width:780px){.card--half{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -71,8 +75,8 @@
   </section>
 
   <section class="grid" aria-label="Featured">
-    <!-- Headshot card with foreground image -->
-    <article class="card card-photo">
+    <!-- Headshot card, reduced to ~50% width vs standard card -->
+    <article class="card card-photo card--half">
       <img src="/Amanda_Headshot_2025.png" alt="Headshot of Amanda Miller">
       <div class="card-body">
         <header style="display:flex;align-items:center;gap:10px">
